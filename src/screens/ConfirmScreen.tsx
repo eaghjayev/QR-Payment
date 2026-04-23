@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {
-  View, Text, TouchableOpacity, StyleSheet, ScrollView, Image,
+  View, Text, TouchableOpacity, StyleSheet, ScrollView,
 } from 'react-native';
 import { T } from '../constants/theme';
 import { CARDS, Merchant, ScanFlow } from '../constants/data';
@@ -8,6 +8,7 @@ import { Icon } from '../components/Icon';
 import { CardViz } from '../components/CardViz';
 import { CardSheet } from '../components/CardSheet';
 import { Numpad } from '../components/Numpad';
+import { AZQRLogo } from '../components/AZQRLogo';
 
 interface ConfirmScreenProps {
   onBack: () => void;
@@ -44,12 +45,7 @@ export const ConfirmScreen: React.FC<ConfirmScreenProps> = ({
       <ScrollView style={styles.body} showsVerticalScrollIndicator={false} keyboardShouldPersistTaps="handled">
         {/* AZQR Logo centered */}
         <View style={styles.logoContainer}>
-          <Image
-            // eslint-disable-next-line @typescript-eslint/no-require-imports
-            source={require('../../assets/azqr-logo.png')}
-            style={styles.logo}
-            resizeMode="contain"
-          />
+          <AZQRLogo size={64} />
         </View>
 
         {/* Merchant info */}
@@ -189,7 +185,6 @@ const styles = StyleSheet.create({
   headerTitle: { color: T.text, fontSize: 17, fontWeight: '700' },
   body: { flex: 1, paddingHorizontal: 16 },
   logoContainer: { alignItems: 'center', marginTop: 20, marginBottom: 22 },
-  logo: { width: 64, height: 64, borderRadius: 12 },
   merchantRow: {
     flexDirection: 'row',
     alignItems: 'center',
