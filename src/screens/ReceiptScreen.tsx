@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import {
-  View, Text, TouchableOpacity, StyleSheet, ScrollView, Clipboard,
+  View, Text, TouchableOpacity, StyleSheet, ScrollView,
 } from 'react-native';
+import * as Clipboard from 'expo-clipboard';
 import { T } from '../constants/theme';
 import { CARDS, Merchant, ScanFlow } from '../constants/data';
 import { Icon } from '../components/Icon';
@@ -32,7 +33,8 @@ export const ReceiptScreen: React.FC<ReceiptScreenProps> = ({
 
   const fields: [string, string, boolean?][] = [
     ['Ekvayer', 'ABB (Azərbaycan Beynəlxalq Bankı)'],
-    ['Satıcı / VÖEN', `${merchant.name} / ${merchant.voen}`],
+    ['Satıcı', merchant.name],
+    ['VÖEN', merchant.voen],
     ['Qəbz nömrəsi', receiptNo, true],
     ['Tarix və vaxt', dateStr],
     ['Məbləğ', `${paidAmount.toFixed(2)} AZN`],
@@ -78,7 +80,7 @@ export const ReceiptScreen: React.FC<ReceiptScreenProps> = ({
               </View>
               {copyable && (
                 <TouchableOpacity
-                  onPress={() => Clipboard.setString(value)}
+                  onPress={() => Clipboard.setStringAsync(value)}
                   style={styles.copyBtn}
                 >
                   <Icon name="copy" size={16} color={T.textSec} />

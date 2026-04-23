@@ -1,14 +1,11 @@
 import React, { useState } from 'react';
 import {
   View, Text, ScrollView, TouchableOpacity, StyleSheet,
-  FlatList, Dimensions,
 } from 'react-native';
 import Svg, { Path, Circle } from 'react-native-svg';
-import { T, ACCENT } from '../constants/theme';
+import { T } from '../constants/theme';
 import { CARDS, Transaction } from '../constants/data';
 import { Icon } from '../components/Icon';
-
-const { width: SCREEN_W } = Dimensions.get('window');
 
 interface HomeScreenProps {
   onQR: () => void;
